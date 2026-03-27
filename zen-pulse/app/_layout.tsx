@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MeditationScreen from './meditation';
-import PaywallScreen from './paywall';
-import SessionDetailScreen from './session/[id]';
+import MeditationScreen from './meditation.tsx';
+import PaywallScreen from './paywall.tsx';
+import SessionDetailScreen from './session/[id].tsx';
 
 export type RootStackParamList = {
   Meditation: undefined;
