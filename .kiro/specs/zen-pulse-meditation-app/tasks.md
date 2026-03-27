@@ -185,8 +185,8 @@
   - [ ]* 12.5 Написать unit-тест: MeditationScreen при `isSubscribed=false` показывает кнопку «Улучшить»
     - _Требования: 5.2_
 
-- [ ] 13. Экран деталей сессии (SessionDetailScreen)
-  - [ ] 13.1 Создать `app/session/[id].tsx` — `SessionDetailScreen` (заглушка)
+- [x] 13. Экран деталей сессии (SessionDetailScreen)
+  - [x] 13.1 Создать `app/session/[id].tsx` — `SessionDetailScreen` (заглушка)
     - Получать `id` из параметров навигации
     - Отображать название сессии и кнопку «Назад»
     - _Требования: 2.7_
