@@ -28,7 +28,7 @@ export default function MeditationScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
         {/* Шапка */}
         <View style={styles.header}>
           <Text style={styles.logo}>🌿 ZenPulse</Text>
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: '#0F0C29',
+    overflow: 'scroll',
   },
   scroll: {
     padding: 20,
