@@ -131,10 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     paddingVertical: 18,
     alignItems: 'center',
-    shadowColor: '#7C3AED',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.5,
-    shadowRadius: 12,
+    boxShadow: '0px 6px 12px rgba(124, 58, 237, 0.5)',
     elevation: 8,
   },
   ctaText: {
