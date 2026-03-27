@@ -6,29 +6,29 @@
 
 ## Задачи
 
-- [ ] 1. Инициализация проекта и настройка зависимостей
+- [x] 1. Инициализация проекта и настройка зависимостей
   - Создать новый Expo-проект: `npx create-expo-app zen-pulse-meditation-app --template blank-typescript`
   - Установить зависимости: `react-navigation/native`, `react-navigation/stack`, `nativewind`, `zustand`, `openai`, `fast-check`, `@testing-library/react-native`
   - Настроить `tailwind.config.js` и `babel.config.js` для NativeWind
   - Создать структуру папок: `app/`, `components/`, `store/`, `services/`, `data/`, `constants/`, `types/`
   - _Требования: 5.1_
 
-- [ ] 2. Типы, константы и статические данные
-  - [ ] 2.1 Создать `types/index.ts` с интерфейсами `Session`, `SubscriptionPlan`, `Mood`, `AffirmationResult`, типом `MoodKey`
+- [x] 2. Типы, константы и статические данные
+  - [x] 2.1 Создать `types/index.ts` с интерфейсами `Session`, `SubscriptionPlan`, `Mood`, `AffirmationResult`, типом `MoodKey`
     - _Требования: 2.3, 3.2, 1.3, 1.5_
-  - [ ] 2.2 Создать `constants/moods.ts` с массивом `MOODS` (3 элемента: calm, sad, stressed)
+  - [x] 2.2 Создать `constants/moods.ts` с массивом `MOODS` (3 элемента: calm, sad, stressed)
     - _Требования: 3.2_
-  - [ ] 2.3 Создать `constants/mockAffirmations.ts` с объектом `MOCK_AFFIRMATIONS: Record<MoodKey, string>`
+  - [x] 2.3 Создать `constants/mockAffirmations.ts` с объектом `MOCK_AFFIRMATIONS: Record<MoodKey, string>`
     - _Требования: 3.7_
-  - [ ] 2.4 Создать `data/sessions.ts` с массивом `SESSIONS` (≥6 сессий, ≥3 с `isPremium=true`)
+  - [x] 2.4 Создать `data/sessions.ts` с массивом `SESSIONS` (≥6 сессий, ≥3 с `isPremium=true`)
     - _Требования: 2.2, 2.3_
   - [ ]* 2.5 Написать unit-тесты для статических данных
     - Проверить: `SESSIONS.length >= 6`, `SESSIONS.filter(s => s.isPremium).length >= 3`
     - Проверить: `MOODS.length === 3`
     - _Требования: 2.2, 3.2_
 
-- [ ] 3. Глобальное состояние (Zustand)
-  - [ ] 3.1 Создать `store/subscriptionStore.ts` с интерфейсом `SubscriptionState`
+- [x] 3. Глобальное состояние (Zustand)
+  - [x] 3.1 Создать `store/subscriptionStore.ts` с интерфейсом `SubscriptionState`
     - Поля: `isSubscribed: boolean` (начальное значение `false`)
     - Методы: `activateSubscription()`, `resetSubscription()`
     - In-memory store (без персистентности)
@@ -44,12 +44,12 @@
     - `resetSubscription()` устанавливает `isSubscribed === false`
     - _Требования: 4.3_
 
-- [ ] 4. Настройка навигации
-  - [ ] 4.1 Создать `app/_layout.tsx` — корневой layout с `NavigationContainer` и `Stack.Navigator`
+- [x] 4. Настройка навигации
+  - [x] 4.1 Создать `app/_layout.tsx` — корневой layout с `NavigationContainer` и `Stack.Navigator`
     - Зарегистрировать экраны: `Meditation`, `Paywall`, `SessionDetail`
     - Обернуть в провайдер Zustand (если требуется)
     - _Требования: 5.1_
-  - [ ] 4.2 Создать `app/index.tsx` — точка входа с редиректом на `MeditationScreen`
+  - [x] 4.2 Создать `app/index.tsx` — точка входа с редиректом на `MeditationScreen`
     - _Требования: 5.1_
 
 - [ ] 5. Checkpoint — базовая структура готова
