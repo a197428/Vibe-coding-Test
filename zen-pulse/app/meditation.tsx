@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, Text, FlatList, TouchableOpacity, StyleSheet,
+  View, Text, ScrollView, TouchableOpacity, StyleSheet, Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -25,58 +25,73 @@ export default function MeditationScreen() {
     }
   };
 
-  const header = (
-    <View>
-      <View style={styles.header}>
-        <Text style={styles.logo}>🌿 ZenPulse</Text>
-        <Text style={styles.greeting}>Добро пожаловать</Text>
-        <Text style={styles.subtitle}>Найдите свой покой сегодня</Text>
-      </View>
-
-      {!isSubscribed && (
-        <TouchableOpacity
-          style={styles.upgradeBanner}
-          onPress={() => navigation.navigate('Paywall')}
-          activeOpacity={0.85}
-        >
-          <Text style={styles.upgradeText}>
-            ✨ Разблокируйте все медитации — Улучшить →
-          </Text>
-        </TouchableOpacity>
-      )}
-
-      <AffirmationWidget />
-
-      <Text style={styles.sectionTitle}>Медитации</Text>
-    </View>
-  );
-
   return (
-    <View style={styles.safe}>
-      <FlatList
-        data={SESSIONS}
-        keyExtractor={(item) => item.id}
-        ListHeaderComponent={header}
-        contentContainerStyle={styles.scroll}
+    <View style={styles.container}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
+        bounces={true}
+        scrollEnabled={true}
+      >
+        {/* Шапка */}
+        <View style={styles.header}>
+          <Text style={styles.logo}>🌿 ZenPulse</Text>
+          <Text style={styles.greeting}>Добро пожаловать</Text>
+          <Text style={styles.subtitle}>Найдите свой покой сегодня</Text>
+        </View>
+
+        {/* Баннер апгрейда */}
+        {!isSubscribed && (
+          <TouchableOpacity
+            style={styles.upgradeBanner}
+            onPress={() => navigation.navigate('Paywall')}
+            activeOpacity={0.85}
+          >
+            <Text style={styles.upgradeText}>
+              ✨ Разблокируйте все медитации — Улучшить →
+            </Text>
+          </TouchableOpacity>
+        )}
+
+        {/* Аффирмация дня */}
+        <AffirmationWidget />
+
+        {/* Список сессий */}
+        <Text style={styles.sectionTitle}>Медитации</Text>
+        {SESSIONS.map((session) => (
           <SessionCard
-            session={item}
+            key={session.id}
+            session={session}
             isSubscribed={isSubscribed}
             onPress={handleSessionPress}
           />
-        )}
-      />
+        ))}
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: {
+  container: {
     flex: 1,
     backgroundColor: '#0F0C29',
+    ...(Platform.OS === 'web' ? {
+      position: 'absolute' as any,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+    } : {}),
   },
-  scroll: {
+  scrollView: {
+    flex: 1,
+    ...(Platform.OS === 'web' ? {
+      height: '100%' as any,
+      overflowY: 'auto' as any,
+    } : {}),
+  },
+  content: {
     padding: 20,
     paddingBottom: 60,
   },

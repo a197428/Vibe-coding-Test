@@ -1,0 +1,11 @@
+/* Фикс скролла для React Navigation Stack в веб-режиме */
+#root > div,
+#root > div > div {
+  height: 100%;
+}
+
+/* Разрешаем скролл внутри экранов навигации */
+[data-testid="stack-screen"],
+.r-overflow-1udh08x {
+  overflow: visible !important;
+}

@@ -20,7 +20,11 @@ export default function RootLayout() {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Meditation"
-          screenOptions={{ headerShown: false }}
+          screenOptions={{
+            headerShown: false,
+            cardStyle: { flex: 1 },
+            cardOverlayEnabled: false,
+          }}
         >
           <Stack.Screen name="Meditation" component={MeditationScreen} />
           <Stack.Screen name="Paywall" component={PaywallScreen} />
