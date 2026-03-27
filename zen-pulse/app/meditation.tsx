@@ -1,8 +1,9 @@
 import React from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
-  StyleSheet, SafeAreaView,
+  StyleSheet, Platform,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSubscriptionStore } from '../store/subscriptionStore';
@@ -17,6 +18,7 @@ type NavProp = StackNavigationProp<RootStackParamList, 'Meditation'>;
 export default function MeditationScreen() {
   const navigation = useNavigation<NavProp>();
   const { isSubscribed } = useSubscriptionStore();
+  const insets = useSafeAreaInsets();
 
   const handleSessionPress = (session: Session) => {
     if (session.isPremium && !isSubscribed) {
@@ -27,8 +29,12 @@ export default function MeditationScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
+    <View style={[styles.safe, { paddingTop: insets.top }]}>
+      <ScrollView
+        contentContainerStyle={styles.scroll}
+        showsVerticalScrollIndicator={false}
+        style={styles.scrollView}
+      >
         {/* Шапка */}
         <View style={styles.header}>
           <Text style={styles.logo}>🌿 ZenPulse</Text>
@@ -63,7 +69,7 @@ export default function MeditationScreen() {
           />
         ))}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -71,7 +77,10 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: '#0F0C29',
-    overflow: 'scroll',
+    ...(Platform.OS === 'web' ? { height: '100vh' as any } : {}),
+  },
+  scrollView: {
+    flex: 1,
   },
   scroll: {
     padding: 20,
