@@ -158,8 +158,8 @@
     - Содержит кнопку «Попробовать бесплатно»
     - _Требования: 1.2, 1.3, 1.4, 1.6_
 
-- [ ] 12. Экран медитаций (MeditationScreen)
-  - [ ] 12.1 Создать `app/meditation.tsx` — `MeditationScreen`
+- [x] 12. Экран медитаций (MeditationScreen)
+  - [x] 12.1 Создать `app/meditation.tsx` — `MeditationScreen`
     - Отображать прокручиваемый список `SessionCard` из `SESSIONS`
     - Передавать `isSubscribed` из Zustand store в каждую `SessionCard`
     - При нажатии на заблокированную сессию (без подписки) → `navigation.navigate('Paywall')`
