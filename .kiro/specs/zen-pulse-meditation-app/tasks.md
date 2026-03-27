@@ -52,17 +52,17 @@
   - [x] 4.2 Создать `app/index.tsx` — точка входа с редиректом на `MeditationScreen`
     - _Требования: 5.1_
 
-- [ ] 5. Checkpoint — базовая структура готова
+- [x] 5. Checkpoint — базовая структура готова
   - Убедиться, что проект запускается без ошибок, навигация инициализирована, store доступен. Задать вопросы пользователю при необходимости.
 
-- [ ] 6. Компонент SessionCard
-  - [ ] 6.1 Создать `components/SessionCard.tsx`
+- [x] 6. Компонент SessionCard
+  - [x] 6.1 Создать `components/SessionCard.tsx`
     - Рендерить обложку (`coverImage`), название (`title`), длительность (`durationMinutes` мин)
     - Принимать пропсы: `session: Session`, `isSubscribed: boolean`, `onPress: (session: Session) => void`
     - Если `session.isPremium && !isSubscribed` — рендерить `LockOverlay` поверх карточки
     - Добавить `testID="lock-overlay"` на компонент `LockOverlay`
     - _Требования: 2.3, 2.4, 2.5_
-  - [ ] 6.2 Создать `components/LockOverlay.tsx`
+  - [x] 6.2 Создать `components/LockOverlay.tsx`
     - Полупрозрачное затемнение + иконка замка по центру
     - _Требования: 2.4_
   - [ ]* 6.3 Написать property-тест: наличие замка соответствует статусу подписки
@@ -76,8 +76,8 @@
     - `fc.property(fc.record({ id: fc.uuid(), title: fc.string({minLength:1}), durationMinutes: fc.integer({min:1}), isPremium: fc.boolean(), coverImage: fc.string({minLength:1}) }), (session) => { ... title, coverImage, durationMinutes присутствуют })`
     - _Требования: 2.3_
 
-- [ ] 7. Компонент MoodSelector
-  - [ ] 7.1 Создать `components/MoodSelector.tsx`
+- [x] 7. Компонент MoodSelector
+  - [x] 7.1 Создать `components/MoodSelector.tsx`
     - Отображать три кнопки-эмодзи из `MOODS` с подписями на русском языке
     - Принимать пропсы: `selectedMood: MoodKey | null`, `onSelect: (mood: MoodKey) => void`
     - Выбранный эмодзи получает визуальное выделение (кольцо/фон через NativeWind)
@@ -88,8 +88,8 @@
     - `fc.property(fc.array(fc.constantFrom('calm','sad','stressed'), {minLength:1, maxLength:10}), (clicks) => { /* симулировать нажатия, проверить что выбран только последний */ })`
     - _Требования: 3.3_
 
-- [ ] 8. AffirmationService
-  - [ ] 8.1 Создать `services/affirmationService.ts`
+- [x] 8. AffirmationService
+  - [x] 8.1 Создать `services/affirmationService.ts`
     - Реализовать метод `generate(mood: MoodKey): Promise<AffirmationResult>`
     - Если `OPENAI_API_KEY` задан — вызвать OpenAI API с промптом на русском языке (timeout 10s)
     - При ошибке / таймауте / пустом ответе / отсутствии кириллицы — вернуть `MOCK_AFFIRMATIONS[mood]`
@@ -117,8 +117,8 @@
     - Ответ без кириллицы → мок
     - _Требования: 3.7, 3.9_
 
-- [ ] 9. Компонент AffirmationWidget
-  - [ ] 9.1 Создать `components/AffirmationWidget.tsx`
+- [x] 9. Компонент AffirmationWidget
+  - [x] 9.1 Создать `components/AffirmationWidget.tsx`
     - Самодостаточный компонент с внутренним состоянием: `selectedMood`, `affirmationText`, `isLoading`, `error`
     - Включать `MoodSelector` и кнопку «Получить аффирмацию»
     - При нажатии без выбранного настроения — показывать inline-подсказку «Выберите настроение»
@@ -128,7 +128,7 @@
   - [ ]* 9.2 Написать unit-тест: нажатие «Генерировать» без настроения показывает подсказку
     - _Требования: 3.8_
 
-- [ ] 10. Checkpoint — сервисный слой и компоненты готовы
+- [x] 10. Checkpoint — сервисный слой и компоненты готовы
   - Убедиться, что все компоненты рендерятся без ошибок, AffirmationService возвращает корректные данные. Задать вопросы пользователю при необходимости.
 
 - [ ] 11. Экран подписки (PaywallScreen)
