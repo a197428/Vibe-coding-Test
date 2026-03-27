@@ -1,9 +1,7 @@
 import React from 'react';
 import {
-  View, Text, ScrollView, TouchableOpacity,
-  StyleSheet, Platform,
+  View, Text, FlatList, TouchableOpacity, StyleSheet,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSubscriptionStore } from '../store/subscriptionStore';
@@ -18,7 +16,6 @@ type NavProp = StackNavigationProp<RootStackParamList, 'Meditation'>;
 export default function MeditationScreen() {
   const navigation = useNavigation<NavProp>();
   const { isSubscribed } = useSubscriptionStore();
-  const insets = useSafeAreaInsets();
 
   const handleSessionPress = (session: Session) => {
     if (session.isPremium && !isSubscribed) {
@@ -28,47 +25,48 @@ export default function MeditationScreen() {
     }
   };
 
+  const header = (
+    <View>
+      <View style={styles.header}>
+        <Text style={styles.logo}>🌿 ZenPulse</Text>
+        <Text style={styles.greeting}>Добро пожаловать</Text>
+        <Text style={styles.subtitle}>Найдите свой покой сегодня</Text>
+      </View>
+
+      {!isSubscribed && (
+        <TouchableOpacity
+          style={styles.upgradeBanner}
+          onPress={() => navigation.navigate('Paywall')}
+          activeOpacity={0.85}
+        >
+          <Text style={styles.upgradeText}>
+            ✨ Разблокируйте все медитации — Улучшить →
+          </Text>
+        </TouchableOpacity>
+      )}
+
+      <AffirmationWidget />
+
+      <Text style={styles.sectionTitle}>Медитации</Text>
+    </View>
+  );
+
   return (
-    <View style={[styles.safe, { paddingTop: insets.top }]}>
-      <ScrollView
+    <View style={styles.safe}>
+      <FlatList
+        data={SESSIONS}
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={header}
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}
-        style={styles.scrollView}
-      >
-        {/* Шапка */}
-        <View style={styles.header}>
-          <Text style={styles.logo}>🌿 ZenPulse</Text>
-          <Text style={styles.greeting}>Добро пожаловать</Text>
-          <Text style={styles.subtitle}>Найдите свой покой сегодня</Text>
-        </View>
-
-        {/* Баннер апгрейда */}
-        {!isSubscribed && (
-          <TouchableOpacity
-            style={styles.upgradeBanner}
-            onPress={() => navigation.navigate('Paywall')}
-            activeOpacity={0.85}
-          >
-            <Text style={styles.upgradeText}>
-              ✨ Разблокируйте все медитации — Улучшить →
-            </Text>
-          </TouchableOpacity>
-        )}
-
-        {/* Аффирмация дня */}
-        <AffirmationWidget />
-
-        {/* Список сессий */}
-        <Text style={styles.sectionTitle}>Медитации</Text>
-        {SESSIONS.map((session) => (
+        renderItem={({ item }) => (
           <SessionCard
-            key={session.id}
-            session={session}
+            session={item}
             isSubscribed={isSubscribed}
             onPress={handleSessionPress}
           />
-        ))}
-      </ScrollView>
+        )}
+      />
     </View>
   );
 }
@@ -77,14 +75,10 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: '#0F0C29',
-    ...(Platform.OS === 'web' ? { height: '100vh' as any } : {}),
-  },
-  scrollView: {
-    flex: 1,
   },
   scroll: {
     padding: 20,
-    paddingBottom: 40,
+    paddingBottom: 60,
   },
   header: {
     marginBottom: 20,
