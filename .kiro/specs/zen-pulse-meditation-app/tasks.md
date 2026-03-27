@@ -131,8 +131,8 @@
 - [x] 10. Checkpoint — сервисный слой и компоненты готовы
   - Убедиться, что все компоненты рендерятся без ошибок, AffirmationService возвращает корректные данные. Задать вопросы пользователю при необходимости.
 
-- [ ] 11. Экран подписки (PaywallScreen)
-  - [ ] 11.1 Создать `app/paywall.tsx` — `PaywallScreen`
+- [x] 11. Экран подписки (PaywallScreen)
+  - [x] 11.1 Создать `app/paywall.tsx` — `PaywallScreen`
     - При монтировании: если `isSubscribed === true` → `navigation.replace('Meditation')`
     - Отображать ≥4 премиум-преимущества с текстом на русском языке
     - Создать `components/SubscriptionPlanCard.tsx` с пропсами `plan`, `isSelected`, `isRecommended`, `onSelect`
